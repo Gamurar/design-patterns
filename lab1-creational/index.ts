@@ -1,4 +1,3 @@
-// src/index.ts
 import { DatabaseConnection } from "./DatabaseConnection";
 import { AdminUserFactory } from "./User";
 import { ProductBuilder } from "./Product";
@@ -23,4 +22,3 @@ const product = new ProductBuilder()
 // Prototype pattern
 const order1 = new Order(1, [product], admin.username);
 const order2 = order1.clone();
-console.log("Cloned order: ", JSON.stringify(order2, null, 2));
