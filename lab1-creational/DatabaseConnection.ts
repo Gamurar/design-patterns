@@ -1,4 +1,4 @@
-// src/DatabaseConnection.ts
+// Singleton
 import { getRandomInt } from "./utils";
 
 export class DatabaseConnection {

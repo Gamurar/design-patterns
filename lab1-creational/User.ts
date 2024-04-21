@@ -1,4 +1,4 @@
-// src/User.ts
+// Factory Method
 export abstract class User {
   constructor() {}
 
