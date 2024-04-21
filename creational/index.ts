@@ -1,7 +1,7 @@
 import { DatabaseConnection } from './singleton/DatabaseConnection';
 import { ConsoleLoggerFactory } from './factory-method/LoggerFactory';
 import { IglooHouseBuilder } from './builder/HouseBuilder';
-import { WindowsFactory } from './abstract-factory/GUIFactory';
+import { WinFactory } from './abstract-factory/GUIFactory';
 import { Document } from './prototype/DocumentPrototype';
 import { ConnectionPool } from './object-pool/ConnectionPool';
 
@@ -23,7 +23,7 @@ iglooBuilder.buildInterior();
 console.log(iglooBuilder.getHouse());
 
 // Abstract Factory demo
-const guiFactory = new WindowsFactory();
+const guiFactory = new WinFactory();
 const button = guiFactory.createButton();
 button.paint();
 

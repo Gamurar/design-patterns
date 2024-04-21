@@ -2,30 +2,55 @@ interface Button {
   paint(): void;
 }
 
+interface Checkbox {
+  check(): void;
+}
+
 class WinButton implements Button {
   paint(): void {
-      console.log("Render a Windows button");
+    console.log("Render a Windows button");
   }
 }
 
-class MacOSButton implements Button {
+class MacButton implements Button {
   paint(): void {
-      console.log("Render a MacOS button");
+    console.log("Render a Mac button");
+  }
+}
+
+class WinCheckbox implements Checkbox {
+  check(): void {
+    console.log("Checking a Windows checkbox");
+  }
+}
+
+class MacCheckbox implements Checkbox {
+  check(): void {
+    console.log("Checking a Mac checkbox");
   }
 }
 
 interface GUIFactory {
   createButton(): Button;
+  createCheckbox(): Checkbox;
 }
 
-export class WindowsFactory implements GUIFactory {
+export class WinFactory implements GUIFactory {
   createButton(): Button {
-      return new WinButton();
+    return new WinButton();
+  }
+
+  createCheckbox(): Checkbox {
+    return new WinCheckbox();
   }
 }
 
-export class MacOSFactory implements GUIFactory {
+export class MacFactory implements GUIFactory {
   createButton(): Button {
-      return new MacOSButton();
+    return new MacButton();
+  }
+
+  createCheckbox(): Checkbox {
+    return new MacCheckbox();
   }
 }
