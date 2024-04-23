@@ -1,6 +1,6 @@
-import { PaymentAdapter, PayPalPaymentProcessor, StripePaymentProcessor } from './adapter';
+import { StripeAdapter, PayPalPaymentProcessor, StripePaymentProcessor } from './adapter';
 import { OrderProcessingFacade } from './facade';
-import { DiscountDecorator } from './decorator';
+import { DiscountDecorator, ServiceChargeDecorator } from './decorator';
 import { Order, Product } from './composite';
 
 // Setting up components
@@ -13,9 +13,14 @@ order.addComponent(product2);
 
 // Applying a discount
 const discountedOrder = new DiscountDecorator(order, 0.1);
-discountedOrder.calculateTotal();
+const finalOrder = new ServiceChargeDecorator(discountedOrder, 15);
 
 // Processing payment
-const paymentProcessor = new PaymentAdapter(new PayPalPaymentProcessor());
+console.log("--- Processing payment by Stripe (discounted order) ---");
+const paymentProcessor = new StripeAdapter(new StripePaymentProcessor());
 const orderProcessor = new OrderProcessingFacade(paymentProcessor);
 orderProcessor.processOrder(discountedOrder);
+
+console.log("--- Processing payment by Paypal (final order) ---");
+const orderProcessorPaypal = new OrderProcessingFacade(new PayPalPaymentProcessor());
+orderProcessorPaypal.processOrder(finalOrder);

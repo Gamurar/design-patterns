@@ -1,29 +1,29 @@
-interface PaymentProcessor {
-  processPayment(amount: number): void;
+export interface PaymentProcessor {
+  makePayment(amount: number): void;
 }
-
 class PayPalPaymentProcessor implements PaymentProcessor {
-  processPayment(amount: number): void {
-      console.log(`Processing PayPal payment of $${amount}`);
+  makePayment(amount: number): void {
+    console.log(`Making PayPal payment of $${amount}`);
   }
 }
 
-class StripePaymentProcessor implements PaymentProcessor {
+class StripePaymentProcessor {
   processPayment(amount: number): void {
-      console.log(`Processing Stripe payment of $${amount}`);
+    console.log(`Processing Stripe payment of $${amount}`);
   }
 }
 
-class PaymentAdapter implements PaymentProcessor {
-  private paymentService: PaymentProcessor;
+class StripeAdapter extends PayPalPaymentProcessor implements PaymentProcessor {
+  private stripe: StripePaymentProcessor;
 
-  constructor(paymentService: PaymentProcessor) {
-      this.paymentService = paymentService;
+  constructor(stripe: StripePaymentProcessor) {
+    super();
+    this.stripe = stripe;
   }
 
-  processPayment(amount: number): void {
-      this.paymentService.processPayment(amount);
+  makePayment(amount: number): void {
+    this.stripe.processPayment(amount);
   }
 }
 
-export { PaymentAdapter, PayPalPaymentProcessor, StripePaymentProcessor };
+export { StripeAdapter, PayPalPaymentProcessor, StripePaymentProcessor };

@@ -1,53 +1,52 @@
-abstract class OrderComponent {
-  abstract calculateTotal(): void;
-  abstract getTotal(): number;
-  abstract setTotal(total: number): void;
+interface OrderComponent {
+  calculateTotal(): void;
+  getTotal(): number;
+  setTotal(total: number): void;
 }
 
-class Product extends OrderComponent {
+class Product implements OrderComponent {
   private total: number;
 
   constructor(private price: number) {
-      super();
-      this.total = this.price;
+    this.total = this.price;
   }
 
   calculateTotal(): void {
-      console.log(`Product price: $${this.total}`);
+    console.log(`Product price: $${this.total}`);
   }
 
   getTotal(): number {
-      return this.total;
+    return this.total;
   }
 
   setTotal(total: number): void {
-      this.total = total;
+    this.total = total;
   }
 }
 
-class Order extends OrderComponent {
+class Order implements OrderComponent {
   private components: OrderComponent[] = [];
   private total: number = 0;
 
   addComponent(component: OrderComponent): void {
-      this.components.push(component);
+    this.components.push(component);
   }
 
   calculateTotal(): void {
-      this.total = this.components.reduce((sum, component) => {
-          component.calculateTotal();
-          return sum + component.getTotal();
-      }, 0);
-      console.log(`Total order price: $${this.total}`);
+    this.total = this.components.reduce((sum, component) => {
+      component.calculateTotal();
+      return sum + component.getTotal();
+    }, 0);
+    console.log(`Total order price: $${this.total}`);
   }
 
   getTotal(): number {
-      return this.total;
+    return this.total;
   }
 
   setTotal(total: number): void {
-      this.total = total;
+    this.total = total;
   }
 }
 
-export { Order, Product };
+export { Order, Product, OrderComponent };

@@ -1,17 +1,17 @@
-import { PaymentAdapter } from './adapter';
-import { Order } from './composite';
+import { PaymentProcessor } from './adapter';
+import { OrderComponent } from './composite';
 
 class OrderProcessingFacade {
-    private paymentProcessor: PaymentAdapter;
+    private paymentProcessor: PaymentProcessor;
 
-    constructor(paymentProcessor: PaymentAdapter) {
+    constructor(paymentProcessor: PaymentProcessor) {
         this.paymentProcessor = paymentProcessor;
     }
 
-    processOrder(order: Order): void {
+    processOrder(order: OrderComponent): void {
         console.log('Order processing started...');
         order.calculateTotal();
-        this.paymentProcessor.processPayment(order.getTotal());
+        this.paymentProcessor.makePayment(order.getTotal());
         console.log('Order processed successfully');
     }
 }
