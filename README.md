@@ -23,4 +23,3 @@
 - State
 
 ![lab3 drawio](https://github.com/Gamurar/design-patterns/assets/14360920/83303640-1e47-4124-b89f-0487e21ee02e)
-![lab3 drawio](https://github.com/Gamurar/design-patterns/assets/14360920/d38ffede-5458-469f-a817-24a4930f71a6)
