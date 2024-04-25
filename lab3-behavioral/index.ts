@@ -29,6 +29,7 @@ task.addAssignee(developer);
 
 // Change the title and move to the next state
 task.changeTitle("Develop login page and registration page");
+// State pattern usage
 task.moveToNextState();
 
 // Starategy pattern usage
